@@ -19,16 +19,19 @@ def find_links(parsed_html,base_url):
 
 
 base_url="https://www.linkedin.com/"
+url="https://www.linkedin.com/"
 links=[]
 urls=[]
 queued_anchors=queue.Queue()
 
 
 while True:
-	resp=requests.get(base_url,headers=headers)
+	if not url:
+		url=base_url
+	resp=requests.get(url,headers=headers)
 	soup=BeautifulSoup(resp.content, "html.parser")
 	sleep(1)
-	anchors=find_links(soup,base_url)
+	anchors=find_links(soup,url)
 	if anchors:
 		for link in anchors:
 			if link in urls:
@@ -38,9 +41,11 @@ while True:
 				queued_anchors.put(link)
 	if queued_anchors.empty():
 		break
-	base_url=queued_anchors.get()
+	url=queued_anchors.get()
 	print("starting new anchor")
-	print(base_url)
+	print(f"length of urls: {len(urls)}")
+	print(f"length of queued_anchors: {queued_anchors.qsize()}")
+	print(url)
 
 print(links)
 
