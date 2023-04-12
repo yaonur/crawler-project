@@ -20,7 +20,7 @@ class Crawler:
 		self.logger = get_logger()
 		self.session = Session()
 		self.session.headers=self.headers
-		self.urls=["/"]
+		self.urls={"/"}
 		
 
 	def _request(self,url):
@@ -52,7 +52,7 @@ class Crawler:
 		while True:
 			if not self.url:
 				self.url=f"https://{self.domain}"
-				self.urls.append(self.url)
+				self.urls.add(self.url)
 			try:
 				self.logger.info("Getting url: %s", self.url)
 				soup=self._request(self.url)
@@ -72,7 +72,7 @@ class Crawler:
 					link=check_url(link,self.domain)
 					if not link or link in self.urls:
 						continue
-					self.urls.append(link)
+					self.urls.add(link)
 					queued_anchors.put(link)
 			if queued_anchors.empty():
 				break

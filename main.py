@@ -1,7 +1,7 @@
 from crawler import Crawler
 
 def main():
-	domain="crawler-test.com"
+	domain="linkedin.com"
 	crawler = Crawler(domain)
 	crawler.run()
 	
