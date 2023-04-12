@@ -1,8 +1,10 @@
 from crawler import Crawler
 
 def main():
-	url = 'some_url'
-	crawler = Crawler(url)
+	domain="crawler-test.com"
+	crawler = Crawler(domain)
+	crawler.run()
+	
 	
 
 if __name__ == '__main__':

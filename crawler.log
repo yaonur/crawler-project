@@ -1,0 +1,893 @@
+2023-04-12 09:42:34,405 --> ERROR - Error HTTP: https://crawler-test.com/robots_protocol/deepcrawl_ua_disallow/foo code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/robots_protocol/deepcrawl_ua_disallow/foo
+2023-04-12 09:42:52,316 --> ERROR - Error HTTP: https://crawler-test.com/robots_protocol/non_200_with_noindex code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/robots_protocol/non_200_with_noindex
+2023-04-12 09:43:08,418 --> ERROR - Error HTTP: https://crawler-test.com/robots_protocol/canonicalised_with_non_200 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/robots_protocol/canonicalised_with_non_200
+2023-04-12 09:43:20,535 --> ERROR - Error getting url: https://crawler-test.com/redirects/infinite_redirect
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 58, in run
+    soup=self._request(self.url)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 28, in _request
+    resp = self.session.get(url)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 600, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 723, in send
+    history = [resp for resp in gen]
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 723, in <listcomp>
+    history = [resp for resp in gen]
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 191, in resolve_redirects
+    raise TooManyRedirects(
+requests.exceptions.TooManyRedirects: Exceeded 30 redirects.
+2023-04-12 09:43:25,637 --> ERROR - Error getting url: https://crawler-test.com/redirects/two_step_redirect_loop_1
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 58, in run
+    soup=self._request(self.url)
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 28, in _request
+    resp = self.session.get(url)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 600, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 723, in send
+    history = [resp for resp in gen]
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 723, in <listcomp>
+    history = [resp for resp in gen]
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/sessions.py", line 191, in resolve_redirects
+    raise TooManyRedirects(
+requests.exceptions.TooManyRedirects: Exceeded 30 redirects.
+2023-04-12 09:43:27,431 --> ERROR - Error HTTP: https://crawler-test.com/redirects/invalid_redirect code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/images/foo.jpg
+2023-04-12 09:43:28,988 --> ERROR - Error HTTP: https://crawler-test.com/redirects/redirect_to_404 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/redirects/redirect_to_404_target
+2023-04-12 09:43:44,376 --> ERROR - Error HTTP: https://crawler-test.com/infinite/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/infinite/
+2023-04-12 09:43:45,766 --> ERROR - Error HTTP: https://crawler-test.com/urls/multiple_slashes///404_200 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/urls/multiple_slashes///404_200
+2023-04-12 09:44:57,469 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_100 code:408
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 408 Client Error: REQUEST_TIMEOUT for url: https://crawler-test.com/status_codes/status_100
+2023-04-12 09:45:58,468 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_101 code:408
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 408 Client Error: REQUEST_TIMEOUT for url: https://crawler-test.com/status_codes/status_101
+2023-04-12 09:46:59,223 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_102 code:408
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 408 Client Error: REQUEST_TIMEOUT for url: https://crawler-test.com/status_codes/status_102
+2023-04-12 09:47:01,233 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_400 code:400
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://crawler-test.com/status_codes/status_400
+2023-04-12 09:47:01,385 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_401 code:401
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://crawler-test.com/status_codes/status_401
+2023-04-12 09:47:01,533 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_402 code:402
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 402 Client Error: Payment Required for url: https://crawler-test.com/status_codes/status_402
+2023-04-12 09:47:01,686 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_403 code:403
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://crawler-test.com/status_codes/status_403
+2023-04-12 09:47:01,835 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_404 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/status_codes/status_404
+2023-04-12 09:47:01,982 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_405 code:405
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 405 Client Error: Method Not Allowed for url: https://crawler-test.com/status_codes/status_405
+2023-04-12 09:47:02,129 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_406 code:406
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 406 Client Error: Not Acceptable for url: https://crawler-test.com/status_codes/status_406
+2023-04-12 09:47:02,276 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_407 code:407
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 407 Client Error: Proxy Authentication Required for url: https://crawler-test.com/status_codes/status_407
+2023-04-12 09:47:02,426 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_408 code:408
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 408 Client Error: Request Timeout for url: https://crawler-test.com/status_codes/status_408
+2023-04-12 09:47:02,574 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_409 code:409
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 409 Client Error: Conflict for url: https://crawler-test.com/status_codes/status_409
+2023-04-12 09:47:02,722 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_410 code:410
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 410 Client Error: Gone for url: https://crawler-test.com/status_codes/status_410
+2023-04-12 09:47:02,877 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_411 code:411
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 411 Client Error: Length Required for url: https://crawler-test.com/status_codes/status_411
+2023-04-12 09:47:03,033 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_412 code:412
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 412 Client Error: Precondition Failed for url: https://crawler-test.com/status_codes/status_412
+2023-04-12 09:47:03,189 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_413 code:413
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 413 Client Error: Payload Too Large for url: https://crawler-test.com/status_codes/status_413
+2023-04-12 09:47:03,349 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_414 code:414
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 414 Client Error: URI Too Long for url: https://crawler-test.com/status_codes/status_414
+2023-04-12 09:47:03,504 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_415 code:415
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 415 Client Error: Unsupported Media Type for url: https://crawler-test.com/status_codes/status_415
+2023-04-12 09:47:03,663 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_416 code:416
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 416 Client Error: Range Not Satisfiable for url: https://crawler-test.com/status_codes/status_416
+2023-04-12 09:47:03,818 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_417 code:417
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 417 Client Error: Expectation Failed for url: https://crawler-test.com/status_codes/status_417
+2023-04-12 09:47:03,974 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_418 code:418
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 418 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_418
+2023-04-12 09:47:04,129 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_419 code:419
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 419 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_419
+2023-04-12 09:47:04,288 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_420 code:420
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 420 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_420
+2023-04-12 09:47:04,441 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_421 code:421
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 421 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_421
+2023-04-12 09:47:04,596 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_422 code:422
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 422 Client Error: Unprocessable Entity for url: https://crawler-test.com/status_codes/status_422
+2023-04-12 09:47:04,749 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_423 code:423
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 423 Client Error: Locked for url: https://crawler-test.com/status_codes/status_423
+2023-04-12 09:47:04,909 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_424 code:424
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 424 Client Error: Failed Dependency for url: https://crawler-test.com/status_codes/status_424
+2023-04-12 09:47:05,064 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_426 code:426
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 426 Client Error: Upgrade Required for url: https://crawler-test.com/status_codes/status_426
+2023-04-12 09:47:05,220 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_428 code:428
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 428 Client Error: Precondition Required for url: https://crawler-test.com/status_codes/status_428
+2023-04-12 09:47:05,375 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_429 code:429
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://crawler-test.com/status_codes/status_429
+2023-04-12 09:47:05,532 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_431 code:431
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 431 Client Error: Request Header Fields Too Large for url: https://crawler-test.com/status_codes/status_431
+2023-04-12 09:47:05,688 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_440 code:440
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 440 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_440
+2023-04-12 09:47:05,842 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_444 code:444
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 444 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_444
+2023-04-12 09:47:05,997 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_449 code:449
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 449 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_449
+2023-04-12 09:47:06,153 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_450 code:450
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 450 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_450
+2023-04-12 09:47:06,309 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_451 code:451
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 451 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_451
+2023-04-12 09:47:06,465 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_494 code:494
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 494 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_494
+2023-04-12 09:47:06,612 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_495 code:495
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 495 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_495
+2023-04-12 09:47:06,767 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_496 code:496
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 496 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_496
+2023-04-12 09:47:06,922 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_497 code:497
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 497 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_497
+2023-04-12 09:47:07,077 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_498 code:498
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 498 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_498
+2023-04-12 09:47:07,237 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_499 code:499
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 499 Client Error: CUSTOM for url: https://crawler-test.com/status_codes/status_499
+2023-04-12 09:47:07,392 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_500 code:500
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://crawler-test.com/status_codes/status_500
+2023-04-12 09:47:07,546 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_501 code:501
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 501 Server Error: Not Implemented for url: https://crawler-test.com/status_codes/status_501
+2023-04-12 09:47:07,699 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_502 code:502
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://crawler-test.com/status_codes/status_502
+2023-04-12 09:47:07,847 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_503 code:503
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 503 Server Error: Service Unavailable for url: https://crawler-test.com/status_codes/status_503
+2023-04-12 09:47:08,001 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_504 code:504
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 504 Server Error: Gateway Timeout for url: https://crawler-test.com/status_codes/status_504
+2023-04-12 09:47:08,150 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_505 code:505
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 505 Server Error: HTTP Version Not Supported for url: https://crawler-test.com/status_codes/status_505
+2023-04-12 09:47:08,297 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_506 code:506
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 506 Server Error: Variant Also Negotiates for url: https://crawler-test.com/status_codes/status_506
+2023-04-12 09:47:08,447 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_507 code:507
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 507 Server Error: Insufficient Storage for url: https://crawler-test.com/status_codes/status_507
+2023-04-12 09:47:08,594 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_508 code:508
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 508 Server Error: Loop Detected for url: https://crawler-test.com/status_codes/status_508
+2023-04-12 09:47:08,746 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_509 code:509
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 509 Server Error: CUSTOM for url: https://crawler-test.com/status_codes/status_509
+2023-04-12 09:47:08,893 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_510 code:510
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 510 Server Error: Not Extended for url: https://crawler-test.com/status_codes/status_510
+2023-04-12 09:47:09,041 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_511 code:511
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 511 Server Error: Network Authentication Required for url: https://crawler-test.com/status_codes/status_511
+2023-04-12 09:47:09,193 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_520 code:520
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 520 Server Error: CUSTOM for url: https://crawler-test.com/status_codes/status_520
+2023-04-12 09:47:09,346 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_598 code:598
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 598 Server Error: CUSTOM for url: https://crawler-test.com/status_codes/status_598
+2023-04-12 09:47:09,495 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_599 code:599
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 599 Server Error: CUSTOM for url: https://crawler-test.com/status_codes/status_599
+2023-04-12 09:47:10,618 --> ERROR - Error HTTP: https://crawler-test.com/content/error_page code:500
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 500 Server Error: Internal Server Error for url: https://crawler-test.com/content/error_page
+2023-04-12 09:47:17,931 --> ERROR - Error HTTP: https://crawler-test.com/other/page_load_time_n code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/other/page_load_time_n
+2023-04-12 09:47:20,948 --> ERROR - Error HTTP: https://crawler-test.com/other/basic_auth code:401
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://crawler-test.com/other/basic_auth
+2023-04-12 09:47:21,249 --> ERROR - Error HTTP: https://crawler-test.com/blog/company-news/deepcrawl-is-now-lumar/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/blog/company-news/deepcrawl-is-now-lumar/
+2023-04-12 09:47:21,389 --> ERROR - Error HTTP: https://crawler-test.com/ja/blog/company-news/deepcrawl-is-now-lumar/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/ja/blog/company-news/deepcrawl-is-now-lumar/
+2023-04-12 09:47:21,542 --> ERROR - Error HTTP: https://crawler-test.com/platform/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/
+2023-04-12 09:47:21,686 --> ERROR - Error HTTP: https://crawler-test.com/website-intelligence/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/website-intelligence/
+2023-04-12 09:47:21,835 --> ERROR - Error HTTP: https://crawler-test.com/platform/analyze/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/analyze/
+2023-04-12 09:47:21,979 --> ERROR - Error HTTP: https://crawler-test.com/platform/impact/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/impact/
+2023-04-12 09:47:22,126 --> ERROR - Error HTTP: https://crawler-test.com/platform/website-crawler/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/website-crawler/
+2023-04-12 09:47:22,266 --> ERROR - Error HTTP: https://crawler-test.com/professional-services/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/professional-services/
+2023-04-12 09:47:22,407 --> ERROR - Error HTTP: https://crawler-test.com/platform/monitor/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/monitor/
+2023-04-12 09:47:22,548 --> ERROR - Error HTTP: https://crawler-test.com/platform/protect/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/protect/
+2023-04-12 09:47:22,690 --> ERROR - Error HTTP: https://crawler-test.com/platform/integrations/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/platform/integrations/
+2023-04-12 09:47:22,834 --> ERROR - Error HTTP: https://crawler-test.com/case-studies/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/case-studies/
+2023-04-12 09:47:22,989 --> ERROR - Error HTTP: https://crawler-test.com/use-case/website-audits/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/use-case/website-audits/
+2023-04-12 09:47:23,134 --> ERROR - Error HTTP: https://crawler-test.com/use-case/website-monitoring/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/use-case/website-monitoring/
+2023-04-12 09:47:23,281 --> ERROR - Error HTTP: https://crawler-test.com/use-case/seo-qa-testing/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/use-case/seo-qa-testing/
+2023-04-12 09:47:23,428 --> ERROR - Error HTTP: https://crawler-test.com/use-case/site-migrations/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/use-case/site-migrations/
+2023-04-12 09:47:23,569 --> ERROR - Error HTTP: https://crawler-test.com/use-case/seo-organic-search-strategy/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/use-case/seo-organic-search-strategy/
+2023-04-12 09:47:23,715 --> ERROR - Error HTTP: https://crawler-test.com/by-team/for-seo-teams/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/by-team/for-seo-teams/
+2023-04-12 09:47:23,858 --> ERROR - Error HTTP: https://crawler-test.com/by-team/for-marketing-teams/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/by-team/for-marketing-teams/
+2023-04-12 09:47:23,999 --> ERROR - Error HTTP: https://crawler-test.com/by-team/for-developers/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/by-team/for-developers/
+2023-04-12 09:47:24,148 --> ERROR - Error HTTP: https://crawler-test.com/by-team/for-digital-operations/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/by-team/for-digital-operations/
+2023-04-12 09:47:24,289 --> ERROR - Error HTTP: https://crawler-test.com/industry/lumar-for-ecommerce/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/industry/lumar-for-ecommerce/
+2023-04-12 09:47:24,440 --> ERROR - Error HTTP: https://crawler-test.com/industry/lumar-for-publishers-news-website/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/industry/lumar-for-publishers-news-website/
+2023-04-12 09:47:24,594 --> ERROR - Error HTTP: https://crawler-test.com/industry/lumar-for-enterprise/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/industry/lumar-for-enterprise/
+2023-04-12 09:47:24,749 --> ERROR - Error HTTP: https://crawler-test.com/industry/lumar-for-agencies/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/industry/lumar-for-agencies/
+2023-04-12 09:47:24,898 --> ERROR - Error HTTP: https://crawler-test.com/faq/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/faq/
+2023-04-12 09:47:25,053 --> ERROR - Error HTTP: https://crawler-test.com/academy/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/academy/
+2023-04-12 09:47:25,201 --> ERROR - Error HTTP: https://crawler-test.com/ebooks/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/ebooks/
+2023-04-12 09:47:25,350 --> ERROR - Error HTTP: https://crawler-test.com/webinars-events/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/webinars-events/
+2023-04-12 09:47:25,499 --> ERROR - Error HTTP: https://crawler-test.com/blog/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/blog/
+2023-04-12 09:47:25,658 --> ERROR - Error HTTP: https://crawler-test.com/office-hours/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/office-hours/
+2023-04-12 09:47:25,806 --> ERROR - Error HTTP: https://crawler-test.com/product-guides/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/product-guides/
+2023-04-12 09:47:25,954 --> ERROR - Error HTTP: https://crawler-test.com/api/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/api/
+2023-04-12 09:47:26,102 --> ERROR - Error HTTP: https://crawler-test.com/pricing/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/pricing/
+2023-04-12 09:47:26,251 --> ERROR - Error HTTP: https://crawler-test.com/about/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/about/
+2023-04-12 09:47:26,399 --> ERROR - Error HTTP: https://crawler-test.com/careers/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/careers/
+2023-04-12 09:47:26,554 --> ERROR - Error HTTP: https://crawler-test.com/partnerships/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/partnerships/
+2023-04-12 09:47:26,704 --> ERROR - Error HTTP: https://crawler-test.com/meet-lumar-our-new-brand/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/meet-lumar-our-new-brand/
+2023-04-12 09:47:26,877 --> ERROR - Error HTTP: https://crawler-test.com/press-room/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/press-room/
+2023-04-12 09:47:27,029 --> ERROR - Error HTTP: https://crawler-test.com/contact/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/contact/
+2023-04-12 09:47:27,202 --> ERROR - Error HTTP: https://crawler-test.com/request-demo/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/request-demo/
+2023-04-12 09:47:27,350 --> ERROR - Error HTTP: https://crawler-test.com/academy code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/academy
+2023-04-12 09:47:27,503 --> ERROR - Error HTTP: https://crawler-test.com/privacy-policy/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/privacy-policy/
+2023-04-12 09:47:27,652 --> ERROR - Error HTTP: https://crawler-test.com/terms-of-use/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/terms-of-use/
+2023-04-12 09:47:27,806 --> ERROR - Error HTTP: https://crawler-test.com/cookie-policy/ code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/cookie-policy/
+2023-04-12 09:47:33,042 --> ERROR - Error HTTP: https://crawler-test.com/links/not_found/foo1 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/links/not_found/foo1
+2023-04-12 09:47:33,190 --> ERROR - Error HTTP: https://crawler-test.com/links/not_found/foo2 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/links/not_found/foo2
+2023-04-12 09:47:33,338 --> ERROR - Error HTTP: https://crawler-test.com/links/not_found/foo3 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/links/not_found/foo3
+2023-04-12 09:47:33,486 --> ERROR - Error HTTP: https://crawler-test.com/links/not_found/foo4 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/links/not_found/foo4
+2023-04-12 09:47:33,637 --> ERROR - Error HTTP: https://crawler-test.com/links/not_found/foo5 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/links/not_found/foo5
+2023-04-12 09:47:33,961 --> ERROR - Error HTTP: https://crawler-test.com/subdir/relative-link-2 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/subdir/relative-link-2
+2023-04-12 09:47:34,109 --> ERROR - Error HTTP: https://crawler-test.com/links/../a/b/../c/./relative-link-7 code:404
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://crawler-test.com/a/c/relative-link-7
+2023-04-12 09:47:40,953 --> ERROR - Error HTTP: https://crawler-test.com/urls/page_url_length/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx code:400
+Traceback (most recent call last):
+  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 29, in _request
+    resp.raise_for_status()
+  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://crawler-test.com/urls/page_url_length/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
