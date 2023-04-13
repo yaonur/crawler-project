@@ -1,354 +1,94 @@
-2023-04-13 04:38:57,424 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_100 code:
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 130, in _call_sslobject_method
-    result = func(*args)
-             ^^^^^^^^^^^
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/ssl.py", line 921, in read
-    v = self._sslobj.read(len)
-        ^^^^^^^^^^^^^^^^^^^^^^
-ssl.SSLWantReadError: The operation did not complete (read) (_ssl.c:2546)
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 34, in read
-    return await self._stream.receive(max_bytes=max_bytes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 195, in receive
-    data = await self._call_sslobject_method(self._ssl_object.read, max_bytes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 137, in _call_sslobject_method
-    data = await self.transport_stream.receive()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 1265, in receive
-    await self._protocol.read_event.wait()
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/asyncio/locks.py", line 213, in wait
-    await fut
-asyncio.exceptions.CancelledError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
-    yield
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 32, in read
-    with anyio.fail_after(timeout):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/_core/_tasks.py", line 118, in __exit__
-    raise TimeoutError
-TimeoutError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 60, in map_httpcore_exceptions
-    yield
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 353, in handle_async_request
-    resp = await self._pool.handle_async_request(req)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 253, in handle_async_request
-    raise exc
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 237, in handle_async_request
-    response = await connection.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 90, in handle_async_request
-    return await self._connection.handle_async_request(request)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 116, in handle_async_request
-    raise exc
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 95, in handle_async_request
-    ) = await self._receive_response_headers(**kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 159, in _receive_response_headers
-    event = await self._receive_event(timeout=timeout)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 195, in _receive_event
-    data = await self._network_stream.read(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 31, in read
-    with map_exceptions(exc_map):
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/contextlib.py", line 155, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
-    raise to_exc(exc)
-httpcore.ReadTimeout
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 30, in _request
-    response = await client.get(url)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1754, in get
-    return await self.request(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1530, in request
-    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
-    response = await self._send_handling_auth(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
-    response = await self._send_handling_redirects(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
-    response = await self._send_single_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
-    response = await transport.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 352, in handle_async_request
-    with map_httpcore_exceptions():
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/contextlib.py", line 155, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 77, in map_httpcore_exceptions
-    raise mapped_exc(message) from exc
-httpx.ReadTimeout
-2023-04-13 04:38:57,473 --> ERROR - --------------------------------------
-2023-04-13 04:38:57,474 --> ERROR - Error on parsing soup  url 
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 107, in crawl
-    links =await self.find_links(html)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 63, in find_links
-    soup =BeautifulSoup(html, "html.parser")
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/bs4/__init__.py", line 315, in __init__
-    elif len(markup) <= 256 and (
-         ^^^^^^^^^^^
-TypeError: object of type 'bool' has no len()
-2023-04-13 04:38:58,821 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_101 code:
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 130, in _call_sslobject_method
-    result = func(*args)
-             ^^^^^^^^^^^
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/ssl.py", line 921, in read
-    v = self._sslobj.read(len)
-        ^^^^^^^^^^^^^^^^^^^^^^
-ssl.SSLWantReadError: The operation did not complete (read) (_ssl.c:2546)
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 34, in read
-    return await self._stream.receive(max_bytes=max_bytes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 195, in receive
-    data = await self._call_sslobject_method(self._ssl_object.read, max_bytes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 137, in _call_sslobject_method
-    data = await self.transport_stream.receive()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 1265, in receive
-    await self._protocol.read_event.wait()
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/asyncio/locks.py", line 213, in wait
-    await fut
-asyncio.exceptions.CancelledError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
-    yield
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 32, in read
-    with anyio.fail_after(timeout):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/_core/_tasks.py", line 118, in __exit__
-    raise TimeoutError
-TimeoutError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 60, in map_httpcore_exceptions
-    yield
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 353, in handle_async_request
-    resp = await self._pool.handle_async_request(req)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 253, in handle_async_request
-    raise exc
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 237, in handle_async_request
-    response = await connection.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 90, in handle_async_request
-    return await self._connection.handle_async_request(request)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 116, in handle_async_request
-    raise exc
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 95, in handle_async_request
-    ) = await self._receive_response_headers(**kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 159, in _receive_response_headers
-    event = await self._receive_event(timeout=timeout)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 195, in _receive_event
-    data = await self._network_stream.read(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 31, in read
-    with map_exceptions(exc_map):
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/contextlib.py", line 155, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
-    raise to_exc(exc)
-httpcore.ReadTimeout
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 30, in _request
-    response = await client.get(url)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1754, in get
-    return await self.request(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1530, in request
-    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
-    response = await self._send_handling_auth(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
-    response = await self._send_handling_redirects(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
-    response = await self._send_single_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
-    response = await transport.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 352, in handle_async_request
-    with map_httpcore_exceptions():
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/contextlib.py", line 155, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 77, in map_httpcore_exceptions
-    raise mapped_exc(message) from exc
-httpx.ReadTimeout
-2023-04-13 04:38:58,826 --> ERROR - Error HTTP: https://crawler-test.com/status_codes/status_102 code:
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 130, in _call_sslobject_method
-    result = func(*args)
-             ^^^^^^^^^^^
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/ssl.py", line 921, in read
-    v = self._sslobj.read(len)
-        ^^^^^^^^^^^^^^^^^^^^^^
-ssl.SSLWantReadError: The operation did not complete (read) (_ssl.c:2546)
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 34, in read
-    return await self._stream.receive(max_bytes=max_bytes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 195, in receive
-    data = await self._call_sslobject_method(self._ssl_object.read, max_bytes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/streams/tls.py", line 137, in _call_sslobject_method
-    data = await self.transport_stream.receive()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 1265, in receive
-    await self._protocol.read_event.wait()
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/asyncio/locks.py", line 213, in wait
-    await fut
-asyncio.exceptions.CancelledError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
-    yield
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 32, in read
-    with anyio.fail_after(timeout):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/anyio/_core/_tasks.py", line 118, in __exit__
-    raise TimeoutError
-TimeoutError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 60, in map_httpcore_exceptions
-    yield
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 353, in handle_async_request
-    resp = await self._pool.handle_async_request(req)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 253, in handle_async_request
-    raise exc
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection_pool.py", line 237, in handle_async_request
-    response = await connection.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/connection.py", line 90, in handle_async_request
-    return await self._connection.handle_async_request(request)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 116, in handle_async_request
-    raise exc
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 95, in handle_async_request
-    ) = await self._receive_response_headers(**kwargs)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 159, in _receive_response_headers
-    event = await self._receive_event(timeout=timeout)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_async/http11.py", line 195, in _receive_event
-    data = await self._network_stream.read(
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/backends/asyncio.py", line 31, in read
-    with map_exceptions(exc_map):
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/contextlib.py", line 155, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
-    raise to_exc(exc)
-httpcore.ReadTimeout
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 30, in _request
-    response = await client.get(url)
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1754, in get
-    return await self.request(
-           ^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1530, in request
-    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1617, in send
-    response = await self._send_handling_auth(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1645, in _send_handling_auth
-    response = await self._send_handling_redirects(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1682, in _send_handling_redirects
-    response = await self._send_single_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_client.py", line 1719, in _send_single_request
-    response = await transport.handle_async_request(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 352, in handle_async_request
-    with map_httpcore_exceptions():
-  File "/home/linuxbrew/.linuxbrew/opt/python@3.11/lib/python3.11/contextlib.py", line 155, in __exit__
-    self.gen.throw(typ, value, traceback)
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/httpx/_transports/default.py", line 77, in map_httpcore_exceptions
-    raise mapped_exc(message) from exc
-httpx.ReadTimeout
-2023-04-13 04:38:58,946 --> ERROR - --------------------------------------
-2023-04-13 04:38:58,946 --> ERROR - Error on parsing soup  url 
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 107, in crawl
-    links =await self.find_links(html)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 63, in find_links
-    soup =BeautifulSoup(html, "html.parser")
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/bs4/__init__.py", line 315, in __init__
-    elif len(markup) <= 256 and (
-         ^^^^^^^^^^^
-TypeError: object of type 'bool' has no len()
-2023-04-13 04:38:59,070 --> ERROR - --------------------------------------
-2023-04-13 04:38:59,071 --> ERROR - Error on parsing soup  url 
-Traceback (most recent call last):
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 107, in crawl
-    links =await self.find_links(html)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/crawler/crawler_api.py", line 63, in find_links
-    soup =BeautifulSoup(html, "html.parser")
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ynr/PycharmProjects/crawler-project/.venv/lib/python3.11/site-packages/bs4/__init__.py", line 315, in __init__
-    elif len(markup) <= 256 and (
-         ^^^^^^^^^^^
-TypeError: object of type 'bool' has no len()
+2023-04-13 05:37:17,299 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/us_and_canada
+2023-04-13 05:37:18,614 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/middle_east
+2023-04-13 05:37:18,614 --> ERROR - Error ConnectionTimout: https://bbc.com/sport
+2023-04-13 05:37:18,615 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-middle-east-65258811
+2023-04-13 05:37:20,444 --> ERROR - Error ConnectionTimout: https://bbc.com/sport/football/65244881
+2023-04-13 05:37:32,373 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business
+2023-04-13 05:37:33,100 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65259132
+2023-04-13 05:37:33,102 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/europe
+2023-04-13 05:37:33,103 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65259132
+2023-04-13 05:37:33,104 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65259132
+2023-04-13 05:37:33,106 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/europe
+2023-04-13 05:37:33,137 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-65257407
+2023-04-13 05:37:33,138 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65259132
+2023-04-13 05:37:34,968 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk
+2023-04-13 05:37:34,969 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-65257407
+2023-04-13 05:37:37,082 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65245141
+2023-04-13 05:37:37,084 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/europe
+2023-04-13 05:37:37,594 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249139
+2023-04-13 05:37:37,596 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/us_and_canada
+2023-04-13 05:37:37,613 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249139
+2023-04-13 05:37:37,615 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65245141
+2023-04-13 05:37:38,954 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65253966
+2023-04-13 05:37:38,957 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/europe
+2023-04-13 05:37:38,958 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65253966
+2023-04-13 05:37:38,960 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-65250784
+2023-04-13 05:37:38,961 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk
+2023-04-13 05:37:38,963 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-65250784
+2023-04-13 05:37:41,539 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249141
+2023-04-13 05:37:41,540 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/us_and_canada
+2023-04-13 05:37:41,540 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249141
+2023-04-13 05:37:42,278 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249138
+2023-04-13 05:37:42,286 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/us_and_canada
+2023-04-13 05:37:42,287 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249138
+2023-04-13 05:37:42,953 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65248354
+2023-04-13 05:37:42,954 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/us_and_canada
+2023-04-13 05:37:42,955 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65248354
+2023-04-13 05:37:42,956 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-northern-ireland-65246855
+2023-04-13 05:37:42,957 --> ERROR - Error ConnectionTimout: https://bbc.com/news/northern_ireland
+2023-04-13 05:37:42,959 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-northern-ireland-65246855
+2023-04-13 05:37:42,960 --> ERROR - Error ConnectionTimout: https://bbc.com/news/entertainment-arts-65258807
+2023-04-13 05:37:42,961 --> ERROR - Error ConnectionTimout: https://bbc.com/news/entertainment_and_arts
+2023-04-13 05:37:42,963 --> ERROR - Error ConnectionTimout: https://bbc.com/news/entertainment-arts-65258807
+2023-04-13 05:37:42,964 --> ERROR - Error ConnectionTimout: https://bbc.com/news/science-environment-65254022
+2023-04-13 05:37:42,965 --> ERROR - Error ConnectionTimout: https://bbc.com/news/science_and_environment
+2023-04-13 05:37:42,967 --> ERROR - Error ConnectionTimout: https://bbc.com/news/science-environment-65254022
+2023-04-13 05:37:42,968 --> ERROR - Error ConnectionTimout: http://www.bbc.com/news/business/
+2023-04-13 05:37:42,969 --> ERROR - Error ConnectionTimout: https://bbc.com/news/health-65252511
+2023-04-13 05:37:42,970 --> ERROR - Error ConnectionTimout: https://bbc.com/news/health
+2023-04-13 05:37:47,008 --> ERROR - Error ConnectionTimout: https://bbc.com/news/health-65252511
+2023-04-13 05:37:47,009 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-wales-57853220
+2023-04-13 05:37:47,538 --> ERROR - Error ConnectionTimout: https://bbc.com/news/wales
+2023-04-13 05:37:47,540 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-wales-57853220
+2023-04-13 05:37:47,981 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65245054
+2023-04-13 05:37:47,982 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business-65248196
+2023-04-13 05:37:47,983 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business
+2023-04-13 05:37:47,984 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business-65248196
+2023-04-13 05:37:47,984 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/health-65252510
+2023-04-13 05:37:47,985 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/world-us-canada-65248502
+2023-04-13 05:37:47,986 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/world-asia-india-65175711
+2023-04-13 05:37:47,988 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/uk-65194594
+2023-04-13 05:37:47,989 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/world-middle-east-65224751
+2023-04-13 05:37:47,990 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/world-us-canada-65183250
+2023-04-13 05:37:47,992 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/world-us-canada-65197858
+2023-04-13 05:37:47,993 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/business-38507481
+2023-04-13 05:37:47,994 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/business-65173246
+2023-04-13 05:37:47,995 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business
+2023-04-13 05:37:48,002 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/us_and_canada
+2023-04-13 05:37:48,003 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65245054
+2023-04-13 05:37:51,441 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/business-65173246
+2023-04-13 05:37:51,443 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/business-15521824
+2023-04-13 05:37:51,443 --> ERROR - Error ConnectionTimout: https://www.bbc.com/news/business-65110680
+2023-04-13 05:38:02,149 --> ERROR - Error ConnectionTimout: https://bbc.com/pashto/
+2023-04-13 05:38:02,453 --> ERROR - Error ConnectionTimout: https://bbc.com/nepali/
+2023-04-13 05:38:02,457 --> ERROR - Error ConnectionTimout: https://bbc.com/marathi/
+2023-04-13 05:38:09,078 --> ERROR - Error ConnectionTimout: https://bbc.com/news/health
+2023-04-13 05:38:15,538 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world/europe/jersey
+2023-04-13 05:38:15,762 --> ERROR - Error ConnectionTimout: https://bbc.com/news/politics
+2023-04-13 05:38:15,764 --> ERROR - Error ConnectionTimout: https://bbc.com/news/localnews
+2023-04-13 05:38:15,765 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business
+2023-04-13 05:38:22,543 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65249138
+2023-04-13 05:38:28,727 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-europe-65259132
+2023-04-13 05:38:28,735 --> ERROR - Error HTTP: https://bbc.com/news/world/europe code:
+2023-04-13 05:38:29,222 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-northern-ireland-65244335
+2023-04-13 05:38:36,318 --> ERROR - Error ConnectionTimout: https://bbc.com/news/uk-65255135
+2023-04-13 05:38:36,320 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65208045
+2023-04-13 05:38:36,331 --> ERROR - Error HTTP: https://bbc.com/news/world-us-canada-65257957 code:
+2023-04-13 05:38:37,078 --> ERROR - Error ConnectionTimout: https://bbc.com/news/world-us-canada-65258107
+2023-04-13 05:38:43,376 --> ERROR - Error ConnectionTimout: https://cloud.email.bbc.com/bbcnewsignup2
+2023-04-13 05:38:52,272 --> ERROR - Error HTTP: https://bbc.com/news/localnews code:
+2023-04-13 05:38:52,504 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business
+2023-04-13 05:38:52,766 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business/market-data
+2023-04-13 05:38:52,767 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business-45489065
+2023-04-13 05:38:52,768 --> ERROR - Error ConnectionTimout: https://bbc.com/news/business-15521824
+2023-04-13 05:39:01,720 --> ERROR - Error ConnectionTimout: https://bbc.com/reel/video/p0fccnq3/capoeira-brazil-s-oldest-martial-art

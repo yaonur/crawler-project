@@ -29,31 +29,28 @@ class Crawler:
             try:
                 time.sleep(self.sleep_time)
                 self.worker_logger.info(f"starting request for {url}")
-                response = await client.get(url,headers=consts.HEADERS)
+                response = await client.get(url, headers=consts.HEADERS)
                 return response.text
             # add more exceptions and handle them in the needed way
             # of company requirements
             # tweak the sleep time on some exceptions like timeout to throttle
-            except httpx.HTTPError as errhttp:
-                self.worker_logger.exception(f"Error HTTP: {url} code:{errhttp}")
-                return False
-            except httpx.ReadTimeout as errtimeout:
-                self.worker_logger.exception(
-                    "Error Timeout: %s code:%s", url, errtimeout
-                )
+            except httpx.ConnectTimeout as err:
+                self.worker_logger.error( f"Error ConnectionTimout: {url}" )
+                self.skipped_urls.add(url)
+            except httpx.HTTPError as err:
+                self.worker_logger.error(f"Error HTTP: {url} code:{err}")
+            except httpx.ReadTimeout as err:
+                self.worker_logger.error("Error Timeout: %s code:%s", url, err)
                 self.worker_logger.error("adding to skipped urls")
                 self.skipped_urls.add(url)
-                return False
-            except httpx.ConnectError as errconn:
-                self.worker_logger.exception(f"Error HTTP: {url} code:{errconn}")
+            except httpx.ConnectError as err:
+                self.worker_logger.error(f"Error HTTP: {url} code:{err}")
                 self.worker_logger.error("adding to skipped urls")
                 self.skipped_urls.add(url)
-                return False
-            except Exception as e:
+            except Exception as err:
                 # fmt: off
-                self.worker_logger.error("------------------General error------------------------")
-                self.worker_logger.exception(f"Error getting url: {url} code: {e}")
-                return False
+                self.worker_logger.exception("------------------General error------------------------")
+                self.worker_logger.exception(f"Error getting url: {url} code: {err}")
 
     async def filter_url(self, domain, anchor):
         if anchor.startswith("//"):
@@ -94,6 +91,8 @@ class Crawler:
                 continue
             try:
                 html = await self._request(url)
+                if not html:
+                    continue
             except Exception as e:
                 self.worker_logger.error("--------------------------------------")
                 # fmt: off
@@ -106,7 +105,7 @@ class Crawler:
                 links = await self.find_links(html)
             except Exception as e:
                 self.worker_logger.error("--------------------------------------")
-                self.worker_logger.exception("Error on parsing soup  url ")
+                self.worker_logger.exception(f"Error on parsing soup url: {url} ")
                 self.must_handle_urls.add(url)
                 self.url_queue.task_done()
                 continue
