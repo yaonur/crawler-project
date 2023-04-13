@@ -28,6 +28,14 @@ Start the crawler by calling the `start` method:
  crawler.start()
 ```
 
+## Docker 
+simply build and run
+
+``` bash
+	docker build . -t crawler
+	docker run crawler 
+```
+
 ## Configuration
 
 The `Crawler` class has a few configurable parameters that you can use to tweak the crawler's behavior.
