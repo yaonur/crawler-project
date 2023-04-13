@@ -1,87 +1,164 @@
-import requests
-from requests import Session
+import asyncio
+import httpx
 from bs4 import BeautifulSoup
-from . import consts
-from .utils import get_logger,check_url
-import queue
-from pathlib import Path
-from time import sleep
-from datetime import datetime
+from urllib.parse import urlparse, urljoin
 import urllib
+from . import consts
+from .utils import get_logger, check_url
+from pathlib import Path
+import time
+
 
 class Crawler:
-	url=""
-	urls=[]
-	skipped_urls=[]
-	def __init__(self, domain):
-		self.domain = domain
-		self.soup = None
-		self.headers=consts.HEADERS
-		self.logger = get_logger()
-		self.session = Session()
-		self.session.headers=self.headers
-		self.urls={"/"}
-		
+    worker_logger = get_logger("worker","worker", "INFO")
+    crawler_logger = get_logger("crawler","crawler", "INFO")
+    SENTINEL = object()
+    workers = []
+    sleep_time = 0.1
 
-	def _request(self,url):
-		try:
-			resp = self.session.get(url)
-			resp.raise_for_status()
-			return BeautifulSoup(resp.content, "html.parser")
-		except requests.exceptions.HTTPError as errhttp:
-			self.logger.exception("Error HTTP: %s code:%s", self.url,errhttp.response.status_code)
-			return False
-		except requests.exceptions.ReadTimeout as errtimeout:
-			self.logger.exception("Error Timeout: %s code:%s", self.url,errhttp.response.status_code)
-			self.logger.error("adding to skipped urls")
-			self.skipped_urls.append(self.url)
-			return False
-		except requests.exceptions.ConnectionError as errconn:
-			self.logger.exception("Error HTTP: %s code:%s", self.url,errhttp.response.status_code)
-			self.logger.error("adding to skipped urls")
-			self.skipped_urls.append(self.url)
-			return False
+    def __init__(self, domain, max_worker_count=10):
+        self.domain = domain
+        self.max_worker_count = max_worker_count
+        self.url_queue = asyncio.Queue()
+        self.visited_urls = {"/"}
+        self.skipped_urls = set()
+        self.must_handle_urls = set()
 
-	
-	def find_links_test(self,parsed_html,base_url):
-		anchors = [link["href"] for link in self.soup.find_all('a',href=True)]
-		return anchors
+    async def _request(self, url):
+        async with httpx.AsyncClient() as client:
+            try:
+                time.sleep(self.sleep_time)
+                self.worker_logger.info(f"starting request for {url}")
+                response = await client.get(url, headers=consts.HEADERS)
+                return response.text
+            # add more exceptions and handle them in the needed way
+            # of company requirements
+            # tweak the sleep time on some exceptions like timeout to throttle
+            except httpx.ConnectTimeout as err:
+                self.worker_logger.error(f"Error ConnectionTimout: {url}")
+                self.skipped_urls.add(url)
+            except httpx.HTTPError as err:
+                self.worker_logger.error(f"Error HTTP: {url} code:{err}")
+            except httpx.ReadTimeout as err:
+                self.worker_logger.error("Error Timeout: %s code:%s", url, err)
+                self.worker_logger.error("adding to skipped urls")
+                self.skipped_urls.add(url)
+            except httpx.ConnectError as err:
+                self.worker_logger.error(f"Error HTTP: {url} code:{err}")
+                self.worker_logger.error("adding to skipped urls")
+                self.skipped_urls.add(url)
+            except Exception as err:
+                # fmt: off
+                self.worker_logger.exception("------------------General error------------------------")
+                self.worker_logger.exception(f"Error getting url: {url} code: {err}")
 
-	def run(self):
-		queued_anchors=queue.Queue()
-		while True:
-			if not self.url:
-				self.url=f"https://{self.domain}"
-				self.urls.add(self.url)
-			try:
-				self.logger.info("Getting url: %s", self.url)
-				soup=self._request(self.url)
-				if not soup:
-					self.url=queued_anchors.get()
-					continue
-				self.soup=soup
-			except Exception as e:
-				self.logger.exception("Error getting url: %s", self.url)
-				self.skipped_urls.append(self.url)
-				self.url=queued_anchors.get()
-				continue
+    async def filter_url(self, domain, anchor):
+        if anchor.startswith("//"):
+            anchor = "https:" + anchor
+        elif anchor.startswith("/"):
+            anchor = "https://" + domain + anchor
+        if not Path(anchor).suffix and domain in urllib.parse.urlparse(anchor).netloc:
+            return anchor
 
-			anchors=self.find_links_test(soup,self.url)
-			if anchors:
-				for link in anchors:
-					link=check_url(link,self.domain)
-					if not link or link in self.urls:
-						continue
-					self.urls.add(link)
-					queued_anchors.put(link)
-			if queued_anchors.empty():
-				break
-			self.logger.info("Crawled %s", self.url)
-			self.logger.info("Queued %s", queued_anchors.qsize())
-			self.logger.info("Skipped %s", len(self.skipped_urls))
-			self.logger.info("Total %s", len(self.urls))
-			self.url=queued_anchors.get()
+    async def find_links(self, html):
+        soup = BeautifulSoup(html, "html.parser")
+        anchors = [link["href"] for link in soup.find_all("a", href=True)]
+        filtered_anchors = []
+        for anchor in anchors:
+            anchor = await self.filter_url(self.domain, anchor)
+            if anchor:
+                filtered_anchors.append(anchor)
+        return filtered_anchors
 
-	
+    async def add_workers(self, num_workers=1):
+        for i in range(num_workers):
+            self.crawler_logger.debug(f"Adding worker")
+            worker = asyncio.create_task(self.crawl())
+            self.workers.append(worker)
+            self.url_queue.put_nowait(self.SENTINEL)
 
-	
+    async def remove_workers(self, num_workers=1):
+        for i in range(num_workers):
+            worker = self.workers.pop()
+            worker.cancel()
+
+    async def crawl(self, sleep_time=0.1):
+        while True:
+            time.sleep(sleep_time)
+            url = await self.url_queue.get()
+
+            if url is self.SENTINEL or None:
+                self.url_queue.task_done()
+                self.worker_logger.debug("-----------Worker finished----------")
+                break
+            if url in self.visited_urls:
+                self.url_queue.task_done()
+                continue
+            try:
+                html = await self._request(url)
+                if not html:
+                    continue
+            except Exception as e:
+                self.worker_logger.error("--------------------------------------")
+                # fmt: off
+                self.worker_logger.exception(f"Error getting url on the main _request url: {e}")
+                self.must_handle_urls.add(url)
+                self.url_queue.task_done()
+                continue
+            self.visited_urls.add(url)
+            try:
+                links = await self.find_links(html)
+            except Exception as e:
+                self.worker_logger.error("--------------------------------------")
+                self.worker_logger.exception(f"Error on parsing soup url: {url} ")
+                self.must_handle_urls.add(url)
+                self.url_queue.task_done()
+                continue
+            for link in links:
+                self.url_queue.put_nowait(link)
+
+            # TODO: process html here
+
+            self.worker_logger.info(f"Crawled {url}")
+            self.worker_logger.info(f"Queued {self.url_queue.qsize()}")
+            self.worker_logger.info(f"Skipped {len(self.skipped_urls)} ")
+            self.worker_logger.info(f"Workers {len(self.workers)} ")
+            self.worker_logger.info(f"Total {len(self.visited_urls)}")
+            self.url_queue.task_done()
+
+    async def start(self):
+        self.url_queue.put_nowait(f"https://{self.domain}")
+        self.url_queue.put_nowait(f"https://www.{self.domain}")
+        worker = asyncio.create_task(self.crawl())
+        self.workers.append(worker)
+        self.url_queue.put_nowait(self.SENTINEL)
+        while True:
+            num_workers = len(self.workers)
+            queue_size = self.url_queue.qsize()
+            should_add_workers = (
+                int(queue_size / 2) > num_workers
+                and num_workers < self.max_worker_count
+            )
+            if should_add_workers:
+                await self.add_workers()
+
+            if all(worker.done() for worker in self.workers):
+                break
+
+            await asyncio.sleep(0.2)
+        # TODO: scale down on some conditions maybe when getting too many timeout errors
+        self.crawler_logger.info("Waiting for workers to finish")
+        await asyncio.gather(*self.workers)
+
+        # TODO: handle skipped urls
+
+        self.crawler_logger.info("Finished crawling")
+
+    def run(self):
+        try:
+            asyncio.run(self.start())
+        except Exception as err:
+            self.crawler_logger.exception("Error on running crawler")
+            self.crawler_logger.exception(err)
+            # TODO: big time failure maybe send to sentry ,restart the crawler etc.
+            raise Exception("Disco")

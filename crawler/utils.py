@@ -4,9 +4,11 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import urllib
 
-def get_logger():
-	logger=logging.getLogger(__name__)
-	logging_level=os.getenv(key='LOGGING_LEVEL',default='DEBUG')
+def get_logger(logger_name,file_name,logging_level="INFO"):
+	if logger_name:
+		logger=logging.getLogger(logger_name)
+	else:
+		logger=logging.getLogger(__name__)
 	formatter = logging.Formatter('%(asctime)s --> %(levelname)s - %(message)s')
 	logger.setLevel(level=logging_level)
 
@@ -14,7 +16,7 @@ def get_logger():
 	c_handler=logging.StreamHandler()
 	c_handler.setLevel(level=logging_level)
 	c_handler.setFormatter(formatter)
-	file_handler=RotatingFileHandler('crawler.log',maxBytes=1024*1024,backupCount=0)
+	file_handler=RotatingFileHandler(f'{file_name}.log',maxBytes=1024*1024,backupCount=0)
 	file_handler.setLevel(logging.ERROR)
 	file_handler.setFormatter(formatter)
 	logger.addHandler(file_handler)
