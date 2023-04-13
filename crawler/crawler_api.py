@@ -14,15 +14,15 @@ class Crawler:
     crawler_logger = get_logger("crawler","crawler", "INFO")
     SENTINEL = object()
     workers = []
-    sleep_time = 0.1
 
-    def __init__(self, domain, max_worker_count=10):
+    def __init__(self, domain, max_worker_count=10,sleep_time=0.1):
         self.domain = domain
         self.max_worker_count = max_worker_count
         self.url_queue = asyncio.Queue()
         self.visited_urls = {"/"}
         self.skipped_urls = set()
         self.must_handle_urls = set()
+        self.sleep_time = sleep_time
 
     async def _request(self, url):
         async with httpx.AsyncClient() as client:
