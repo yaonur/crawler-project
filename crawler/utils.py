@@ -4,8 +4,11 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 import urllib
 
-def get_logger(file_name,logging_level="INFO"):
-	logger=logging.getLogger(__name__)
+def get_logger(logger_name,file_name,logging_level="INFO"):
+	if logger_name:
+		logger=logging.getLogger(logger_name)
+	else:
+		logger=logging.getLogger(__name__)
 	formatter = logging.Formatter('%(asctime)s --> %(levelname)s - %(message)s')
 	logger.setLevel(level=logging_level)
 

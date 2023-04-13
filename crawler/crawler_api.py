@@ -10,8 +10,8 @@ import time
 
 
 class Crawler:
-    worker_logger = get_logger("worker", "INFO")
-    crawler_logger = get_logger("crawler", "INFO")
+    worker_logger = get_logger("worker","worker", "INFO")
+    crawler_logger = get_logger("crawler","crawler", "INFO")
     SENTINEL = object()
     workers = []
     sleep_time = 0.1
@@ -155,4 +155,10 @@ class Crawler:
         self.crawler_logger.info("Finished crawling")
 
     def run(self):
-        asyncio.run(self.start())
+        try:
+            asyncio.run(self.start())
+        except Exception as err:
+            self.crawler_logger.exception("Error on running crawler")
+            self.crawler_logger.exception(err)
+            # TODO: big time failure maybe send to sentry ,restart the crawler etc.
+            raise Exception("Disco")
