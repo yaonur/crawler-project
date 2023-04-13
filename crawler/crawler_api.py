@@ -53,11 +53,17 @@ class Crawler:
                 self.worker_logger.exception(f"Error getting url: {url} code: {err}")
 
     async def filter_url(self, domain, anchor):
+        filtered_extensions = [".pdf", ".jpg", ".png", ".jpeg", ".gif", ".svg",".mpeg",".mp4"]
+        filtered_startswith = ["mailto:",  "skype:", "whatsapp:", "viber:", "sms:","ftp:"]
+        for startswith in filtered_startswith:
+            if anchor.startswith(startswith):
+                return None
         if anchor.startswith("//"):
             anchor = "https:" + anchor
         elif anchor.startswith("/"):
             anchor = "https://" + domain + anchor
-        if not Path(anchor).suffix and domain in urllib.parse.urlparse(anchor).netloc:
+
+        if not Path(anchor).suffix in filtered_extensions and domain in urllib.parse.urlparse(anchor).netloc  :
             return anchor
 
     async def find_links(self, html):
@@ -94,6 +100,7 @@ class Crawler:
             if url in self.visited_urls:
                 self.url_queue.task_done()
                 continue
+
             try:
                 html = await self._request(url)
                 if not html:
@@ -106,6 +113,7 @@ class Crawler:
                 self.url_queue.task_done()
                 continue
             self.visited_urls.add(url)
+
             try:
                 links = await self.find_links(html)
             except Exception as e:
