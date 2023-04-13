@@ -35,7 +35,7 @@ class Crawler:
             # of company requirements
             # tweak the sleep time on some exceptions like timeout to throttle
             except httpx.ConnectTimeout as err:
-                self.worker_logger.error( f"Error ConnectionTimout: {url}" )
+                self.worker_logger.error(f"Error ConnectionTimout: {url}")
                 self.skipped_urls.add(url)
             except httpx.HTTPError as err:
                 self.worker_logger.error(f"Error HTTP: {url} code:{err}")
@@ -76,6 +76,11 @@ class Crawler:
             worker = asyncio.create_task(self.crawl())
             self.workers.append(worker)
             self.url_queue.put_nowait(self.SENTINEL)
+
+    async def remove_workers(self, num_workers=1):
+        for i in range(num_workers):
+            worker = self.workers.pop()
+            worker.cancel()
 
     async def crawl(self, sleep_time=0.1):
         while True:
@@ -141,6 +146,8 @@ class Crawler:
                 break
 
             await asyncio.sleep(0.2)
+        # TODO: scale down on some conditions maybe when getting too many timeout errors
+        self.crawler_logger.info("Waiting for workers to finish")
         await asyncio.gather(*self.workers)
 
         # TODO: handle skipped urls
