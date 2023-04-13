@@ -29,7 +29,7 @@ class Crawler:
             try:
                 time.sleep(self.sleep_time)
                 self.worker_logger.info(f"starting request for {url}")
-                response = await client.get(url)
+                response = await client.get(url,headers=consts.HEADERS)
                 return response.text
             # add more exceptions and handle them in the needed way
             # of company requirements
@@ -124,6 +124,7 @@ class Crawler:
 
     async def start(self):
         self.url_queue.put_nowait(f"https://{self.domain}")
+        self.url_queue.put_nowait(f"https://www.{self.domain}")
         worker = asyncio.create_task(self.crawl())
         self.workers.append(worker)
         self.url_queue.put_nowait(self.SENTINEL)

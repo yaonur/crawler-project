@@ -2,7 +2,7 @@ from crawler import Crawler
 import asyncio
 
 def main():
-	domain="crawler-test.com"
+	domain="livescores.com"
 	crawler = Crawler(domain,max_worker_count=40)
 	crawler.run()
 
