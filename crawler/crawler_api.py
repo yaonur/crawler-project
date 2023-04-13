@@ -10,12 +10,12 @@ import time
 
 
 class Crawler:
-    worker_logger = get_logger("worker","worker", "INFO")
-    crawler_logger = get_logger("crawler","crawler", "INFO")
+    worker_logger = get_logger("worker", "worker", "INFO")
+    crawler_logger = get_logger("crawler", "crawler", "INFO")
     SENTINEL = object()
     workers = []
 
-    def __init__(self, domain, max_worker_count=10,sleep_time=0.1):
+    def __init__(self, domain, max_worker_count=10, sleep_time=0.1):
         self.domain = domain
         self.max_worker_count = max_worker_count
         self.url_queue = asyncio.Queue()
@@ -53,8 +53,24 @@ class Crawler:
                 self.worker_logger.exception(f"Error getting url: {url} code: {err}")
 
     async def filter_url(self, domain, anchor):
-        filtered_extensions = [".pdf", ".jpg", ".png", ".jpeg", ".gif", ".svg",".mpeg",".mp4"]
-        filtered_startswith = ["mailto:",  "skype:", "whatsapp:", "viber:", "sms:","ftp:"]
+        filtered_extensions = [
+            ".pdf",
+            ".jpg",
+            ".png",
+            ".jpeg",
+            ".gif",
+            ".svg",
+            ".mpeg",
+            ".mp4",
+        ]
+        filtered_startswith = [
+            "mailto:",
+            "skype:",
+            "whatsapp:",
+            "viber:",
+            "sms:",
+            "ftp:",
+        ]
         for startswith in filtered_startswith:
             if anchor.startswith(startswith):
                 return None
@@ -63,7 +79,10 @@ class Crawler:
         elif anchor.startswith("/"):
             anchor = "https://" + domain + anchor
 
-        if not Path(anchor).suffix in filtered_extensions and domain in urllib.parse.urlparse(anchor).netloc  :
+        if (
+            not Path(anchor).suffix in filtered_extensions
+            and domain in urllib.parse.urlparse(anchor).netloc
+        ):
             return anchor
 
     async def find_links(self, html):
