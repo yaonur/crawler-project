@@ -165,3 +165,9 @@
 2023-04-13 06:02:55,271 --> ERROR - Error ConnectionTimout: https://bbc.com/weather/coast-and-sea
 2023-04-13 06:03:11,444 --> ERROR - Error ConnectionTimout: https://bbc.com/future/article/20230403-how-cellphones-have-changed-our-brains
 2023-04-13 06:03:26,929 --> ERROR - Error ConnectionTimout: https://bbc.com/worklife/article/20220311-why-workers-and-employers-are-ghosting-each-other
+2023-04-13 08:57:02,124 --> ERROR - Error HTTP: https://httpbin.org/delay/10 code:
+2023-04-13 09:02:45,651 --> ERROR - Error HTTP: https://httpbin.org/delay/10 code:
+2023-04-13 09:03:30,458 --> ERROR - Error HTTP: https://httpbin.org/delay/60 code:
+2023-04-13 09:04:42,265 --> ERROR - Error HTTP: https://httpbin.org/delay/60 code:
+2023-04-13 09:05:16,631 --> ERROR - Error HTTP: https://httpbin.org/delay/60 code:
+2023-04-13 09:05:40,354 --> ERROR - Error HTTP: https://httpbin.org/delay/60 code:
