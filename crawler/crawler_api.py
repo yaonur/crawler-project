@@ -79,7 +79,7 @@ class Crawler:
             anchor = "https://" + domain + anchor
 
         if (
-            not Path(anchor).suffix in filtered_extensions
+            Path(anchor).suffix  not in filtered_extensions
             and domain in urllib.parse.urlparse(anchor).netloc
         ):
             return anchor
