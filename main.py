@@ -1,5 +1,4 @@
 from crawler import Crawler
-import asyncio
 
 
 def main():
